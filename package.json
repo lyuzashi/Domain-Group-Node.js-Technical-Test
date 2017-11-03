@@ -1,0 +1,15 @@
+{
+  "name": "Domain-Group-Node.js-Technical-Test",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:lyuzashi/Domain-Group-Node.js-Technical-Test.git",
+  "author": "Ben Patterson",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "jest": "^21.2.1"
+  }
+}
