@@ -1,4 +1,14 @@
-// Before all: Import web server app
+import app from './app.js';
+import request from 'supertest';
+
+describe(`Serves up the SPA`, () => {
+  test('It responds to GET /', done => {
+    request(app).get(`/`).then(response => {
+      expect(response.statusCode).toBe(200);
+      done();
+    })
+  })
+})
 
 // Serves up the SPA
 // - App responds to get / (stub fs/static files)
@@ -14,3 +24,4 @@
 // - Injects data for inflating with magic string (based on cookie)
 // Is stateless, to support auto-scaling
 // – spin up multiple app instances to check data
+
