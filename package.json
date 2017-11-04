@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "express": "^4.16.2",
+    "mock-fs": "^4.4.2",
     "supertest": "^3.0.0"
   }
 }

@@ -1,5 +1,16 @@
 import app from './app.js';
 import request from 'supertest';
+import mockFS from 'mock-fs';
+
+beforeAll(() => {
+  mockFS({
+    'src/index.html': '<html></html>'
+  })
+});
+
+afterAll(() => {
+  mockFS.restore();
+})
 
 describe(`Serves up the SPA`, () => {
   test('It responds to GET /', done => {
