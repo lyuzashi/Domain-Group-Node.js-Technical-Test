@@ -1,7 +1,7 @@
 # Domain Group Node.js Technical Test – Submission
 > Developed by Ben Patterson
 
-## Build Steps
+## Dev Build Steps
 
 This application has be built with node 8.1. Due to the use of Webpack it should support versions 
 back to 4. To install Node 8.1, make use of the .nvmrc file,
@@ -39,7 +39,7 @@ $ yarn test -- --verbose
 $ npm test -- --verbose
 ```
 
-## Build
+## Build for Production
 
 The application can be built for deployment to a production server.
 ```bash
