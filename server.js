@@ -9,7 +9,7 @@ var load = require('webpack-to-memory');
 var config = require('./webpack.config');
 // Modify config for client-side web app
 var clientConfig = Object.assign({}, config, {
-  entry: './app/main.js',
+  entry: './app/mount.js',
   output: {
     path: '/',
     filename: 'app.js',
