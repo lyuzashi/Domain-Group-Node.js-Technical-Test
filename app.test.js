@@ -4,25 +4,29 @@ import mockFS from 'mock-fs';
 
 beforeAll(() => {
   mockFS({
-    'src/index.html': '<html></html>'
+    'static/test.css': `body {}`,
   })
 });
 
 afterAll(() => {
   mockFS.restore();
-})
+});
 
 describe(`Serves up the SPA`, () => {
-  test('It responds to GET /', done => {
-    request(app).get(`/`).then(response => {
-      expect(response.statusCode).toBe(200);
-      done();
-    })
+  test(`It responds to GET /`, done => {
+    request(app).get(`/`)
+      .expect(200)
+      .end(done);
+  });
+  test(`It serves static assets`, done => {
+    request(app)
+      .get('/test.css')
+      .expect(200, `body {}`)
+      .end(done);
   })
-})
+});
 
-// Serves up the SPA
-// - App responds to get / (stub fs/static files)
+
 // Server renders the SPA to support non-JS clients
 // - RenderToString is called and content lands inside react root (stub everything)
 // Saves user inputed data to the server as they switch between form fields
