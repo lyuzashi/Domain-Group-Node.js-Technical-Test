@@ -3,10 +3,10 @@ import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-15';
 import request from 'supertest';
 import { shallow } from 'enzyme';
-import app from './app.js';
+import app from '../app.js';
 import HTML from './index';
 
-jest.mock('./app/hcard');
+jest.mock('./hcard');
 
 Enzyme.configure({ adapter: new Adapter() });
 

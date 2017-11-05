@@ -1,21 +1,15 @@
-import React from 'react';
-import ReactDOMServer from 'react-dom/server';
 import express from 'express';
-import HTML from './index';
-import HCard from './app/hcard';
+import bodyParser from 'body-parser';
+import cookieParser from 'cookie-parser';
+import render from './app/render';
+import update from './app/update';
 
 const app = express();
 
-app.get('/', (req, res) => {
-  const content = ReactDOMServer.renderToStaticMarkup(
-    <HTML>
-      <HCard />
-    </HTML>
-  );
-  res.write(content);
-  res.end();
-});
-
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.get('/', render);
+app.post('/update', update);
 app.use(express.static(`static`));
 
 export default app;
