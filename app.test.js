@@ -25,13 +25,3 @@ describe(`Serves up the SPA`, () => {
       .end(done);
   })
 });
-
-
-// Saves completed form data on user submission
-// - Method of insert in DB works (full update)
-// - Handles POST /submit (inserts to db)
-// On page reload, populates the form fields with the values previous saved
-// - Injects data for inflating with magic string (based on cookie)
-// Is stateless, to support auto-scaling
-// – spin up multiple app instances to check data
-

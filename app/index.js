@@ -1,7 +1,7 @@
 import React from 'react';
 import HTMLDocument from 'react-html-document';
 
-export default ({ children }) => (
+export default ({ children, ...props }) => (
   <HTMLDocument
     title="Live hCard Preview"
     scripts={['/app.js']}
@@ -11,6 +11,7 @@ export default ({ children }) => (
       { httpEquiv: 'X-UA-Compatible', content: 'IE=edge' },
       { name: 'viewport', content:'width=device-width, initial-scale=1' },
     ]}
+    {...props}
   >
     {children}
   </HTMLDocument>
