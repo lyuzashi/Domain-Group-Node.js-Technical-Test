@@ -1,8 +1,4 @@
-import React from 'react';
-import Enzyme from 'enzyme';
-import Adapter from 'enzyme-adapter-react-15';
 import request from 'supertest';
-import { shallow } from 'enzyme';
 import render from './render';
 import app from '../app.js';
 import { save, find } from './db';

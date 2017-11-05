@@ -2,6 +2,7 @@
 
 // ES5 until Babel is added to the stack
 var env = process.env.NODE_ENV;
+const port = process.env.PORT || 3000;
 
 var webpack = require('webpack');
 var load = require('webpack-to-memory');
@@ -30,5 +31,6 @@ if (env !== 'PRODUCTION') {
   })
 
 } else {
-  // require build directory
+  const app = require('./build/app').default;
+  app.listen(port);
 }
