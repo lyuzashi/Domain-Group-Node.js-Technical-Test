@@ -1,13 +1,13 @@
 var path = require('path');
 
-module.exports = {
+const server = {
   entry: [
     path.join(__dirname, 'app.js'),
   ],
   output: {
     path: path.join(__dirname, 'build'),
     libraryTarget: 'commonjs2',
-    filename: 'app.js',
+    filename: 'server.js',
     publicPath: '/',
   },
   module: {
@@ -18,4 +18,15 @@ module.exports = {
     }]
   },
   target: 'node',
-}
+};
+
+const client = Object.assign({}, server, {
+  entry: './app/mount.js',
+  output: {
+    filename: 'app.js',
+    path: path.join(__dirname, 'build'),
+  },
+  target: 'web',
+})
+
+module.exports = [ server, client ];

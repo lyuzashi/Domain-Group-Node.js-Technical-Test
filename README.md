@@ -3,6 +3,13 @@
 
 ## Build Steps
 
+This application has be built with node 8.1. Due to the use of Webpack it should support versions 
+back to 4. To install Node 8.1, make use of the .nvmrc file,
+```bash
+$ nvm install
+$ nvm use
+```
+
 1. Install node dependencies
 ```bash
 # with yarn 
@@ -32,9 +39,22 @@ $ yarn test -- --verbose
 $ npm test -- --verbose
 ```
 
+## Build
+
+The application can be built for deployment to a production server.
+```bash
+$ yarn run build
+$ NODE_ENV=PRODUCTION yarn start
+```
+
+A build directory will be created. This should be deployed along with the static directory to a 
+server.
+
 ## Development notes
 
-For this test, node-persist is used to store data on the server in a local file. `save`, `find` and `update` wrappers are written in the app/db.js file. This interface can be swapped for a shared DB or other API.
+For this test, node-persist is used to store data on the server in a local file. `save`, `find` and 
+`update` wrappers are written in the app/db.js file. This interface can be swapped for a shared DB 
+or other API.
 
 Webpack could be used to build a minified application package for deployment to a production server. 
 
@@ -42,19 +62,34 @@ Setting PORT in the environment will be honored by the server.
 
 ## Real-World Considerations
 
-A full session with authentication would be used on a complete website. This test uses a simple cookie to associate a database record with the current browser session.
+A full session with authentication would be used on a complete website. This test uses a simple 
+cookie to associate a database record with the current browser session.
 
-Session hijacking could be easily achieved by discovering a user’s ID in this test code. In a production environment, single use session IDs would be generated to allow revocation and monitoring of any open sessions. HTTPS would also be employed to mitigate man-in-the-middle sniffing of a current session.
+Session hijacking could be easily achieved by discovering a user’s ID in this test code. In a 
+production environment, single use session IDs would be generated to allow revocation and 
+monitoring of any open sessions. HTTPS would also be employed to mitigate man-in-the-middle 
+sniffing of a current session.
 
-Webpack is used to build the server-side code with babel. This same step could be used to build the React application into chunks, handle assets and magnification. Since the front end component was pre-built, most of these steps are not used.
+Webpack is used to build the server-side code with babel. This same step could be used to build 
+the React application into chunks, handle assets and magnification. Since the front end component 
+was pre-built, most of these steps are not used.
 
-The server renders the hCard Builder only on /, but in a large application routing would likely be handled by a React-based router (such as React Router). For React Router, server-side routes can be rendered using the StaticRouter component, passing in the request.url to location.
+The server renders the hCard Builder only on /, but in a large application routing would likely 
+be handled by a React-based router (such as React Router). For React Router, server-side routes 
+can be rendered using the StaticRouter component, passing in the request.url to location.
 
-CSS assets, page title and other meta tags are hard-coded into index.js, however if an isomorphic router is used, this could be better managed with something like React Helmet to provide an interface where each route/component can modify the page head as needed. To implement this with SSR, Helmet.renderStatic can be called – its meta and title properties provided to HTMLDocument.
+CSS assets, page title and other meta tags are hard-coded into index.js, however if an isomorphic 
+router is used, this could be better managed with something like React Helmet to provide an 
+interface where each route/component can modify the page head as needed. To implement this with 
+SSR, Helmet.renderStatic can be called – its meta and title properties provided to HTMLDocument.
 
-Injecting hCard data directly into the server-side rendered page for use as props in the component will not be easy to maintain in a larger application. Ideally a whole-app isomorphic state management system would be built using Redux, Apollo or similar to hydrate all components universally. The basic system used here is universalState.
+Injecting hCard data directly into the server-side rendered page for use as props in the component 
+will not be easy to maintain in a larger application. Ideally a whole-app isomorphic state 
+management system would be built using Redux, Apollo or similar to hydrate all components 
+universally. The basic system used here is universalState.
 
-Parameter whitelisting would be a good idea to prevent malicious storage of data outside a set schema.
+Parameter whitelisting would be a good idea to prevent malicious storage of data outside a set 
+schema.
 
 * * *
 

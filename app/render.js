@@ -7,7 +7,7 @@ import { find } from './db';
 
 export default (req, res) => (
   Promise.resolve().then(() => (
-     req.cookies.user ? find(req.cookies.user) : Promise.resolve()
+     req.cookies.user ? find(req.cookies.user) : Promise.resolve({})
   ))
   .then(state => {
     const content = ReactDOMServer.renderToStaticMarkup(

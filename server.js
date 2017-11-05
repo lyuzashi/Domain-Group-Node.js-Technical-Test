@@ -7,22 +7,14 @@ const port = process.env.PORT || 3000;
 var webpack = require('webpack');
 var load = require('webpack-to-memory');
 
-var config = require('./webpack.config');
-// Modify config for client-side web app
-var clientConfig = Object.assign({}, config, {
-  entry: './app/mount.js',
-  output: {
-    path: '/',
-    filename: 'app.js',
-  },
-  target: 'web',
-});
+var config = require('./webpack.config')[0];
+var clientConfig = require('./webpack.config')[1];
 
 if (env !== 'PRODUCTION') {
   var compiler = load(webpack(config));
   var webpackMiddleware = require('webpack-dev-middleware');
   compiler.then(files => {
-    const app = files['app.js'].default;
+    const app = files['server.js'].default;
     const port = process.env.PORT || 3000;
     app.use(webpackMiddleware(webpack(clientConfig), { stats: false }));
     app.listen(port, function() {
@@ -31,6 +23,7 @@ if (env !== 'PRODUCTION') {
   })
 
 } else {
-  const app = require('./build/app').default;
+  const app = require('./build/server').default;
+  app.use('/app.js', (req, res) => res.sendFile(__dirname + '/build/app.js'));
   app.listen(port);
 }
