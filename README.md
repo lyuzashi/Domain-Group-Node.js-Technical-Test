@@ -14,12 +14,23 @@ $ npm install
 2. Run development server
 ```bash
 # with yarn 
-$ yarn start
+$ yarn start -- --verbose
 
 # with npm
-$ npm start
+$ npm start -- --verbose
 ```
 3. Open http://localhost:3000 in a browser
+
+### Tests
+
+A suite of tests has been written to verify the tasks assigned. This can be run 
+```bash
+# with yarn 
+$ yarn test
+
+# with npm
+$ npm test
+```
 
 ## Development notes
 
